@@ -11,8 +11,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       $scope.listings.push({
         "code": $scope.newListing.code,
         "name": $scope.newListing.name,
-        "latitude": $scope.newListing.coordinates.latitude,
-        "longitude": $scope.newListing.coordinates.longitude,
+        "coordinates": {
+            "latitude": $scope.newListing.coordinates.latitude,
+            "longitude": $scope.newListing.coordinates.longitude,
+        },
         "address": $scope.newListing.address
       });
 

@@ -3,6 +3,7 @@
 
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
   </head>
 
@@ -35,17 +36,20 @@
                       * populate the rows with the code and name of each listing
                       * include a way to remove individual listings
               -->
-              <tbody>
-                <ul class="entryList"><li ng-repeat="listing in listings | orderBy: 'name' | filter:search " ng-click="showDetails(listing)"><button id="deleteButton" ng-click="deleteListing(listing)">X</button><span>{{listing.code + " - " + listing.name}}</span></li></ul>>
+                <!-- <ul class="entryList"><li ng-repeat="listing in listings | orderBy: 'name' | filter:search " ng-click="showDetails(listing)"><button id="deleteButton" ng-click="deleteListing(listing)">X</button><span>{{listing.code + " - " + listing.name}}</span></li></ul> -->
 
-              </tbody>
+                <tr class="entryList" ng-repeat="listing in listings | orderBy: 'name' | filter:search " ng-click="showDetails(listing)">
+                  <td>{{listing.code}}</td>
+                  <td>{{listing.name}}</td>
+                  <td><button id="deleteButton" ng-click="deleteListing(listing)"><i class="far fa-trash-alt"></i></button></td>
+                </tr>
 
             </table>
           </div>
 
           <!-- Write an HTML form that adds new listings to the directory -->
           <form class="newListingForm" ng-submit="addListing()">
-            <h4>Use this form to add new listing</h4>
+            <h4 id="form-title">Use this form to add new listing</h4>
             <input class="input" type="text" placeholder="&emsp;Code" ng-model='newListing.code' /><br>
             <input class="input" type="text" placeholder="&emsp;Building Name" ng-model='newListing.name' /><br>
             <input class="input" type="text" placeholder="&emsp;Latitude" ng-model='newListing.coordinates.latitude' /><br>
@@ -64,18 +68,14 @@
               Include a way to display detailed information about an individual listing:
                    * consider how to use ng-click within the the table to implement this feature
              -->
-             <ul>
-               <li class="details">
-                 <p>{{"Code: " + selectedIndex.code+","}}</p>
-                 <p>{{"Name: " + selectedIndex.name+","}}</p>
-                 <p>Coordinates: { </br>
-                   &emsp;Latitude: {{selectedIndex.latitude +","}} </br>
-                   &emsp;Longitude: {{selectedIndex.longitude +","}} </br>
-                 }</p>
+               <div class="details">
+                 <p>{{"Code: " + selectedIndex.code + ","}}</p>
+                 <p>{{"Name: " + selectedIndex.name + ","}}</p>
+                 <p>Coordinates:</br>
+                   &emsp;&emsp;Latitude: {{selectedIndex.coordinates.latitude + ","}} </br>
+                   &emsp;&emsp;Longitude: {{selectedIndex.coordinates.longitude + ","}} </br>
                  <p>{{"Address: " + selectedIndex.address}}</p>
-               </li>
-           </ul>
-          <!-- </div> -->
+               </div>
         </div>
       </div>
 
